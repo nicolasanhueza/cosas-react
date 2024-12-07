@@ -10,7 +10,6 @@ export interface State {
   fromText: string
   result: string
   loading: boolean
-  tokenCount: number | null // Agrega esto
 }
 
 export type Action =
@@ -18,8 +17,7 @@ export type Action =
   | { type: 'INTERCHANGE_LANGUAGES' }
   | { type: 'SET_TO_LANGUAGE', payload: Language }
   | { type: 'SET_FROM_TEXT', payload: string }
-  | { type: 'SET_RESULT', payload: string, tokenCount: number | null } // Incluye tokenCount
-  | { type: 'SET_TOKEN_COUNT', payload: number | null } // Esta acción es opcional, puedes manejar tokenCount directamente en SET_RESULT
+  | { type: 'SET_RESULT', payload: string }
 
 export enum SectionType {
   From = 'from',

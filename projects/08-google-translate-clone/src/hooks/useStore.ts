@@ -8,8 +8,7 @@ const initialState: State = {
   toLanguage: 'en',
   fromText: '',
   result: '',
-  loading: false,
-  tokenCount: null // Agrega el conteo de tokens al estado inicialz
+  loading: false
 }
 
 // 2. Create a reducer
@@ -17,6 +16,8 @@ function reducer (state: State, action: Action) {
   const { type } = action
 
   if (type === 'INTERCHANGE_LANGUAGES') {
+    // lógica del estado dentro del reducer
+    // porque lo evitamos en los componentes
     if (state.fromLanguage === AUTO_LANGUAGE) return state
 
     const loading = state.fromText !== ''
@@ -26,8 +27,7 @@ function reducer (state: State, action: Action) {
       loading,
       result: '',
       fromLanguage: state.toLanguage,
-      toLanguage: state.fromLanguage,
-      tokenCount: null // Resetea el conteo de tokens
+      toLanguage: state.fromLanguage
     }
   }
 
@@ -40,8 +40,7 @@ function reducer (state: State, action: Action) {
       ...state,
       fromLanguage: action.payload,
       result: '',
-      loading,
-      tokenCount: null // Resetea el conteo de tokens
+      loading
     }
   }
 
@@ -53,8 +52,7 @@ function reducer (state: State, action: Action) {
       ...state,
       toLanguage: action.payload,
       result: '',
-      loading,
-      tokenCount: null // Resetea el conteo de tokens
+      loading
     }
   }
 
@@ -65,8 +63,7 @@ function reducer (state: State, action: Action) {
       ...state,
       loading,
       fromText: action.payload,
-      result: '',
-      tokenCount: null // Resetea el conteo de tokens
+      result: ''
     }
   }
 
@@ -74,16 +71,7 @@ function reducer (state: State, action: Action) {
     return {
       ...state,
       loading: false,
-      result: action.payload,
-      tokenCount: action.tokenCount // Actualiza el conteo de tokens
-    }
-  }
-
-  // Nuevo caso para actualizar el conteo de tokens
-  if (type === 'SET_TOKEN_COUNT') {
-    return {
-      ...state,
-      tokenCount: action.payload // Establece el nuevo conteo de tokens
+      result: action.payload
     }
   }
 
@@ -97,8 +85,7 @@ export function useStore () {
     toLanguage,
     fromText,
     result,
-    loading,
-    tokenCount // Agrega esto
+    loading
   }, dispatch] = useReducer(reducer, initialState)
 
   const interchangeLanguages = () => {
@@ -117,12 +104,8 @@ export function useStore () {
     dispatch({ type: 'SET_FROM_TEXT', payload })
   }
 
-  const setResult = (payload: string, tokenCount: number | null) => { // Acepta el conteo de tokens como argumento
-    dispatch({ type: 'SET_RESULT', payload, tokenCount }) // Despacha el conteo de tokens
-  }
-
-  const setTokenCount = (payload: number | null) => {
-    dispatch({ type: 'SET_TOKEN_COUNT', payload }) // Nueva función para establecer el conteo de tokens
+  const setResult = (payload: string) => {
+    dispatch({ type: 'SET_RESULT', payload })
   }
 
   return {
@@ -131,12 +114,10 @@ export function useStore () {
     fromText,
     result,
     loading,
-    tokenCount, // Agrega esto
     interchangeLanguages,
     setFromLanguage,
     setToLanguage,
     setFromText,
-    setResult,
-    setTokenCount // Agrega esto
+    setResult
   }
 }

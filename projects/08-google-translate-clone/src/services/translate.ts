@@ -11,8 +11,8 @@ export async function translate ({
   fromLanguage: FromLanguage
   toLanguage: Language
   text: string
-}): Promise<{ translated_text: string, total_tokens: number } | null> {
-  if (fromLanguage === toLanguage) return { translated_text: text, total_tokens: 0 }
+}) {
+  if (fromLanguage === toLanguage) return text
 
   try {
     const fromCode = fromLanguage === 'auto' ? 'auto' : SUPPORTED_LANGUAGES[fromLanguage]
@@ -40,7 +40,7 @@ export async function translate ({
     }
 
     const data = await response.json();
-  return { translated_text: data.translated_text, total_tokens: data.total_tokens }
+  return data.translated_text
   } catch (error) {
     console.error('Error translating text:', error);
     return null;

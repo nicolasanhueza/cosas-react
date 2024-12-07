@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect } from 'react'
 import { useDebounce } from './hooks/useDebounce'
-import { Row, Col, Button, Stack } from 'react-bootstrap'
+import { Col, Button, Stack } from 'react-bootstrap'
 
 import './App.css'
 import { ArrowsIcon, ClipboardIcon, SpeakerIcon } from './components/Icons'
@@ -14,9 +14,6 @@ import { useStore } from './hooks/useStore'
 import { translate } from './services/translate'
 import { SectionType } from './types.d'
 
-// Control para mostrar el conteo de tokens
-const SHOW_TOKEN_COUNT = false;
-
 function App() {
   const {
     loading,
@@ -24,36 +21,23 @@ function App() {
     toLanguage,
     fromText,
     result,
-    tokenCount,
     interchangeLanguages,
     setFromLanguage,
     setToLanguage,
     setFromText,
     setResult,
-    setTokenCount
   } = useStore()
 
   const debouncedFromText = useDebounce(fromText, 500)
 
   useEffect(() => {
-    if (debouncedFromText === '') return;
+    if (debouncedFromText === '') return
 
     translate({ fromLanguage, toLanguage, text: debouncedFromText })
-      .then(response => {
-        if (response == null) return;
-        const { translated_text, total_tokens } = response;
-        setResult(translated_text, total_tokens);
-        setTokenCount(total_tokens);
-
-        // Muestra en consola si está activado
-        if (SHOW_TOKEN_COUNT) {
-          console.log(`Tokens usados: ${total_tokens}`);
-        }
+      .then(result => {
+        if (result == null) return
+        setResult(result)
       })
-      .catch(() => {
-        setResult('Error', null);
-        setTokenCount(null);
-      });
   }, [debouncedFromText, fromLanguage, toLanguage]);
 
   const handleClipboard = () => {
@@ -115,12 +99,6 @@ function App() {
                 </Button>
               </div>
             </div>
-
-            {SHOW_TOKEN_COUNT && tokenCount !== null && (
-              <div className="token-count">
-                Tokens usados: {tokenCount}
-              </div>
-            )}
           </Stack>
         </Col>
       </div>
