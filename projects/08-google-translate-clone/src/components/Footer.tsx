@@ -16,7 +16,7 @@ export function Footer() {
               <h5>Recursos</h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="" className="text-decoration-none text-muted">
+                  <a href="https://github.com/nicolasanhueza/Api-Translate-Chatgpt.git" target="_blank" rel="noopener noreferrer" className="text-decoration-none text-muted">
                     Documentación de la API
                   </a>
                 </li>
@@ -27,12 +27,12 @@ export function Footer() {
               <h5>Productos</h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#" className="text-decoration-none text-muted">
+                  <a href="" className="text-decoration-none text-muted">
                     VertAI Pro (Próximamente)
                   </a>
                 </li>
                 <li>
-                  <a href="/api" className="text-decoration-none text-muted">
+                  <a href="https://github.com/nicolasanhueza/Api-Translate-Chatgpt" target="_blank" rel="noopener noreferrer" className="text-decoration-none text-muted">
                     API de traducción
                   </a>
                 </li>
@@ -43,12 +43,12 @@ export function Footer() {
               <h5>La compañía</h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="/contact" className="text-decoration-none text-muted">
+                  <a href="https://www.linkedin.com/in/nicolas-sanhueza-jaque/" target="_blank" rel="noopener noreferrer" className="text-decoration-none text-muted">
                     Contacto
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-decoration-none text-muted">
+                  <a href="" className="text-decoration-none text-muted">
                     Aportes (Próximamente)
                   </a>
                 </li>
@@ -68,10 +68,10 @@ export function Footer() {
             </span>
           </div>
           <div className="social-icons">
-            <a href="www.linkedin.com/in/nicolas-sanhueza-jaque" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/nicolas-sanhueza-jaque/" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', 'linkedin']} size="2x" className="social-icon" />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/nicolasanhueza" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={['fab', 'github']} size="2x" className="social-icon" />
             </a>
           </div>
